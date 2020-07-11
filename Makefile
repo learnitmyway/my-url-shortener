@@ -1,5 +1,6 @@
 .PHONY: \
 	list \
+	db/create/table/url \
 	start  \
 
 list:
@@ -7,3 +8,6 @@ list:
 
 start:
 	node index.js
+
+db/create/table/url:
+	node scripts/create-url-table.js
