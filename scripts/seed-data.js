@@ -38,7 +38,7 @@ allURLs.forEach(
       },
     }
 
-    docClient.put(params, (err, data) => {
+    docClient.put(params, (err) => {
       if (err) {
         console.error(
           'Unable to add URL',
