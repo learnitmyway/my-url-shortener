@@ -21,7 +21,7 @@ AWS.config.update({
 var dynamodb = new AWS.DynamoDB()
 
 var params = {
-  TableName: 'URL',
+  TableName: 'URLs',
   KeySchema: [
     { AttributeName: 'hash', KeyType: 'HASH' }, // partition key
     { AttributeName: 'creationDate', KeyType: 'RANGE' }, // sort key

@@ -11,3 +11,6 @@ start:
 
 db/create/table/url:
 	node scripts/create-url-table.js
+
+db/seed:
+	node scripts/seed-data.js
