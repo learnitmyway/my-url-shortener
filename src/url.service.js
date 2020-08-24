@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk')
 const md5 = require('md5')
+const UrlAccess = require('./url.access')
 
 const tableName = 'URLs'
 
@@ -15,27 +16,8 @@ function instantiateDocClient() {
 }
 
 async function getURLs() {
-  updateAwsConfig()
-
-  var params = {
-    TableName: tableName,
-  }
-
-  const data = await instantiateDocClient()
-    .scan(params, (err, data) => {
-      if (err) {
-        console.error('Unable to query. Error:', JSON.stringify(err, null, 2))
-        throw err
-      } else {
-        console.log('Query succeeded.')
-        data.Items.forEach(({ hash, originalURL }) => {
-          console.log(' -', hash + ': ' + originalURL)
-        })
-      }
-    })
-    .promise()
-
-  return data.Items
+  console.log('url.service getURLs')
+  return new UrlAccess().getURLs()
 }
 
 async function createUrl(originalURL) {
