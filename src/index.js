@@ -8,6 +8,11 @@ app.get('/', async (req, res) => {
   res.send(URLs)
 })
 
+app.post('/create-url', async (req, res) => {
+  console.log('POST request to create-url')
+  res.send('POST request to create-url')
+})
+
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
 )
