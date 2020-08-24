@@ -2,6 +2,7 @@
 	list \
 	db/create/table/url \
 	db/seed \
+	db/setup \
 	lint lint/fix \
 	run \
 	start  \
@@ -14,6 +15,8 @@ db/create/table/url:
 
 db/seed:
 	node scripts/seed-data.js
+
+db/setup: db/create/table/url db/seed
 
 lint := npx eslint --config .eslintrc.js '{src,scripts}/**/*.js' --max-warnings 0
 
