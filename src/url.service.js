@@ -29,4 +29,8 @@ async function getURLs() {
   return data.Items
 }
 
-module.exports = getURLs
+async function createUrl(originalUrl) {
+  console.log('createUrl originalUrl: ', originalUrl)
+}
+
+module.exports = { getURLs, createUrl }
