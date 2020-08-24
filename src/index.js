@@ -15,8 +15,8 @@ app.get('/', async (req, res) => {
 app.post('/create-url', async (req, res) => {
   console.log('POST request to create-url')
   const origUrl = req.body.originalUrl
-  createUrl(origUrl)
-  res.send('POST request to create-url')
+  const hash = await createUrl(origUrl)
+  res.send(JSON.stringify({ hash }, null, 2))
 })
 
 app.listen(port, () =>

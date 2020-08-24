@@ -1,4 +1,5 @@
-var AWS = require('aws-sdk')
+const AWS = require('aws-sdk')
+const md5 = require('md5')
 
 async function getURLs() {
   AWS.config.update({
@@ -30,7 +31,9 @@ async function getURLs() {
 }
 
 async function createUrl(originalUrl) {
-  console.log('createUrl originalUrl: ', originalUrl)
+  console.log('createUrl originalUrl', originalUrl)
+  const hash = Buffer.from(md5(originalUrl)).toString('base64').substring(0, 5)
+  return hash
 }
 
 module.exports = { getURLs, createUrl }
