@@ -37,6 +37,29 @@ class UrlAccess {
 
     return data.Items
   }
+
+  async createUrl(newUrl) {
+    console.log('url.access createUrl newUrl', newUrl)
+    const params = {
+      TableName: this.tableName,
+      Item: newUrl,
+    }
+
+    this.docClient
+      .put(params, (err) => {
+        if (err) {
+          console.error(
+            'Unable to add URL',
+            newUrl.originalURL,
+            '. Error JSON:',
+            JSON.stringify(err, null, 2)
+          )
+        } else {
+          console.log('PutItem succeeded:', newUrl.originalURL)
+        }
+      })
+      .promise()
+  }
 }
 
 module.exports = UrlAccess
