@@ -15,8 +15,8 @@ app.get('/', async (req, res) => {
 app.post('/create-url', async (req, res) => {
   console.log('POST request to create-url')
   const origUrl = req.body.originalUrl
-  const hash = await createUrl(origUrl)
-  res.send(JSON.stringify({ hash }, null, 2))
+  const shortenedUrl = await createUrl(origUrl)
+  res.send(shortenedUrl)
 })
 
 app.listen(port, () =>

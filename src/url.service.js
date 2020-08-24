@@ -33,7 +33,7 @@ async function getURLs() {
 async function createUrl(originalUrl) {
   console.log('createUrl originalUrl', originalUrl)
   const hash = Buffer.from(md5(originalUrl)).toString('base64').substring(0, 5)
-  return hash
+  return 'www.my-url-shortener.com/' + hash
 }
 
 module.exports = { getURLs, createUrl }
