@@ -3,7 +3,6 @@ var AWS = require('aws-sdk')
 var docClient = new AWS.DynamoDB.DocumentClient()
 
 console.log('Importing urls into DynamoDB. Please wait.')
-console.log(process.env.URLS_TABLE_NAME)
 
 var allURLs = [
   {
@@ -21,30 +20,22 @@ var allURLs = [
     userId: '2',
   },
 ]
-allURLs.forEach(
-  ({ hash, originalURL, creationDate, expirationDate, userId }) => {
-    var params = {
-      TableName: process.env.URLS_TABLE_NAME,
-      Item: {
-        hash,
-        originalURL,
-        creationDate,
-        expirationDate,
-        userId,
-      },
-    }
-
-    docClient.put(params, (err) => {
-      if (err) {
-        console.error(
-          'Unable to add URL',
-          originalURL,
-          '. Error JSON:',
-          JSON.stringify(err, null, 2)
-        )
-      } else {
-        console.log('PutItem succeeded:', originalURL)
-      }
-    })
+allURLs.forEach((url) => {
+  var params = {
+    TableName: process.env.URLS_TABLE_NAME,
+    Item: { ...url },
   }
-)
+
+  docClient.put(params, (err) => {
+    if (err) {
+      console.error(
+        'Unable to add URL',
+        url.originalURL,
+        '. Error JSON:',
+        JSON.stringify(err, null, 2)
+      )
+    } else {
+      console.log('PutItem succeeded:', url.originalURL)
+    }
+  })
+})
