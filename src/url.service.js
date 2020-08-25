@@ -2,19 +2,6 @@ const AWS = require('aws-sdk')
 const md5 = require('md5')
 const UrlAccess = require('./url.access')
 
-const tableName = 'URLs'
-
-function updateAwsConfig() {
-  AWS.config.update({
-    region: 'us-west-2',
-    endpoint: 'http://localhost:8000',
-  })
-}
-
-function instantiateDocClient() {
-  return new AWS.DynamoDB.DocumentClient()
-}
-
 async function getURLs() {
   console.log('url.service getURLs')
   return new UrlAccess().getURLs()
