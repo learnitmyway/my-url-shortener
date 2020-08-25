@@ -1,5 +1,6 @@
 # My URL shortener
 
-- start in-memory db with `docker-compose up`
-- set up db with `make db/setup`
+- Set up infrastructure with `terraform apply`
+- Add `export URLS_TABLE_NAME='Urls'` to local .zshrc
+- Seed db with `make db/seed`
 - start app with `make start`

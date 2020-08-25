@@ -1,9 +1,7 @@
 .PHONY: \
 	list \
 	debug \
-	db/create/table/url \
 	db/seed \
-	db/setup \
 	lint lint/fix \
 	run \
 	start  \
@@ -14,13 +12,8 @@ list:
 debug:
 	DEBUG=express:* $(MAKE) start
 
-db/create/table/url:
-	node scripts/create-url-table.js
-
 db/seed:
 	node scripts/seed-data.js
-
-db/setup: db/create/table/url db/seed
 
 lint := npx eslint --config .eslintrc.js '{src,scripts}/**/*.js' --max-warnings 0
 

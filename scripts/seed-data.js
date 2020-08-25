@@ -1,13 +1,9 @@
 var AWS = require('aws-sdk')
 
-AWS.config.update({
-  region: 'us-east-1',
-  endpoint: 'http://localhost:8000',
-})
-
 var docClient = new AWS.DynamoDB.DocumentClient()
 
 console.log('Importing urls into DynamoDB. Please wait.')
+console.log(process.env.URLS_TABLE_NAME)
 
 var allURLs = [
   {
@@ -28,7 +24,7 @@ var allURLs = [
 allURLs.forEach(
   ({ hash, originalURL, creationDate, expirationDate, userId }) => {
     var params = {
-      TableName: 'URLs',
+      TableName: process.env.URLS_TABLE_NAME,
       Item: {
         hash,
         originalURL,

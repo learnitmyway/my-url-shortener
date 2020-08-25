@@ -6,13 +6,8 @@ function createDynamoDBClient() {
 
 class UrlAccess {
   constructor() {
-    AWS.config.update({
-      region: 'us-east-1',
-      endpoint: 'http://localhost:8000',
-    })
-
     this.docClient = createDynamoDBClient()
-    this.tableName = 'URLs'
+    this.tableName = process.env.URLS_TABLE_NAME
   }
 
   async getURLs() {
