@@ -1,4 +1,3 @@
-const AWS = require('aws-sdk')
 const md5 = require('md5')
 const UrlAccess = require('./url.access')
 
