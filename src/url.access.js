@@ -7,7 +7,7 @@ function createDynamoDBClient() {
 class UrlAccess {
   constructor() {
     AWS.config.update({
-      region: 'us-west-2',
+      region: 'us-east-1',
       endpoint: 'http://localhost:8000',
     })
 
