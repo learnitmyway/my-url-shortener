@@ -16,21 +16,17 @@ class UrlAccess {
       TableName: this.tableName,
     }
 
-    const data = await this.docClient
-      .scan(params, (err, data) => {
-        if (err) {
-          console.error('Unable to query. Error:', JSON.stringify(err, null, 2))
-          throw err
-        } else {
-          console.log('Query succeeded.')
-          data.Items.forEach(({ hash, originalURL }) => {
-            console.log(' -', hash + ': ' + originalURL)
-          })
-        }
+    try {
+      const data = await this.docClient.scan(params).promise()
+      console.log('Scan succeeded.')
+      data.Items.forEach(({ hash, originalURL }) => {
+        console.log(' -', hash + ': ' + originalURL)
       })
-      .promise()
-
-    return data.Items
+      return data.Items
+    } catch (err) {
+      console.log('Unable to scan. Error:', JSON.stringify(err, null, 2))
+      throw err
+    }
   }
 
   async createUrl(newUrl) {
@@ -40,20 +36,17 @@ class UrlAccess {
       Item: newUrl,
     }
 
-    this.docClient
-      .put(params, (err) => {
-        if (err) {
-          console.error(
-            'Unable to add URL',
-            newUrl.originalURL,
-            '. Error JSON:',
-            JSON.stringify(err, null, 2)
-          )
-        } else {
-          console.log('PutItem succeeded:', newUrl.originalURL)
-        }
-      })
-      .promise()
+    try {
+      await this.docClient.put(params).promise()
+      console.log('PutItem succeeded:', newUrl.originalURL)
+    } catch (err) {
+      console.log(
+        'Unable to add URL',
+        newUrl.originalURL,
+        '. Error JSON:',
+        JSON.stringify(err, null, 2)
+      )
+    }
   }
 }
 
