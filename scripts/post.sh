@@ -3,6 +3,6 @@
 curl --verbose \
 	--header "Content-Type: application/json" \
 	--data '{
-    "originalUrl": "www.another-example.com"
+    "originalUrl": "'$1'"
   }' \
 http://localhost:4139/create-url
