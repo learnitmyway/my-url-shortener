@@ -24,7 +24,7 @@ lint/fix:
 	${lint} --fix
 
 run:
-	node src/index.js
+	node src/server.js
 
 start:
 	npx nodemon
