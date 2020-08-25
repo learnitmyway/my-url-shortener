@@ -1,7 +1,7 @@
-const AWS = require('aws-sdk')
+const { DynamoDB } = require('aws-sdk')
 
 function createDynamoDBClient() {
-  return new AWS.DynamoDB.DocumentClient()
+  return new DynamoDB.DocumentClient()
 }
 
 class UrlAccess {
