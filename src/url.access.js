@@ -19,8 +19,8 @@ class UrlAccess {
     try {
       const data = await this.docClient.scan(params).promise()
       console.log('Scan succeeded.')
-      data.Items.forEach(({ hash, originalURL }) => {
-        console.log(' -', hash + ': ' + originalURL)
+      data.Items.forEach(({ key, originalURL }) => {
+        console.log(' -', key + ': ' + originalURL)
       })
       return data.Items
     } catch (err) {

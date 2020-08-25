@@ -1,5 +1,4 @@
 var AWS = require('aws-sdk')
-const md5 = require('md5')
 
 var docClient = new AWS.DynamoDB.DocumentClient()
 
@@ -7,14 +6,14 @@ console.log('Importing urls into DynamoDB. Please wait.')
 
 var allURLs = [
   {
-    hash: md5('https://example.com/'),
+    key: 'e',
     originalURL: 'https://example.com/',
     creationDate: '1594465878211',
     expirationDate: '1694465878211',
     userId: '1',
   },
   {
-    hash: md5('https://learnitmyway.com/'),
+    key: 'l',
     originalURL: 'https://learnitmyway.com/',
     creationDate: '1594465960809',
     expirationDate: '1694465960809',

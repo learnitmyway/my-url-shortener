@@ -1,4 +1,3 @@
-const md5 = require('md5')
 const UrlAccess = require('./url.access')
 
 async function getURLs() {
@@ -9,9 +8,9 @@ async function getURLs() {
 async function createUrl(originalURL) {
   console.log('url.service createUrl originalUrl', originalURL)
 
-  const hash = md5(originalURL)
+  const key = originalURL.substring(0, 1)
   const newUrl = {
-    hash,
+    key,
     originalURL,
     creationDate: Date.now().toString(),
     expirationDate: Date.now().toString(),
@@ -19,8 +18,7 @@ async function createUrl(originalURL) {
   }
   await new UrlAccess().createUrl(newUrl)
 
-  const encoded = Buffer.from(hash).toString('base64').substring(0, 5)
-  return 'www.my-url-shortener.com/' + encoded
+  return 'www.my-url-shortener.com/' + key
 }
 
 module.exports = { getURLs, createUrl }
