@@ -12,7 +12,7 @@ list:
 debug:
 	DEBUG=express:* $(MAKE) start
 
-db/seed/ulrs:
+db/seed/urls:
 	node scripts/seedUrls.js
 
 db/prep/slugs:
