@@ -22,4 +22,15 @@ resource "aws_dynamodb_table" "slugs-table" {
     name = "slug"
     type = "S"
   }
+
+  attribute {
+    name = "used"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name               = "UsedIndex"
+    hash_key           = "used"
+    projection_type    = "ALL"
+  }
 }
