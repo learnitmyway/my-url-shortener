@@ -10,7 +10,7 @@ async function createUrl(originalURL) {
 
   const slug = originalURL.substring(0, 1)
   const newUrl = {
-    key: slug,
+    slug,
     originalURL,
     creationDate: Date.now().toString(),
     expirationDate: Date.now().toString(),
