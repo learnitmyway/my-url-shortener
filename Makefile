@@ -12,8 +12,11 @@ list:
 debug:
 	DEBUG=express:* $(MAKE) start
 
-db/seed:
-	node scripts/seed-data.js
+db/seed/ulrs:
+	node scripts/seedUrls.js
+
+db/prep/slugs:
+	node scripts/prepSlugs.js
 
 lint := npx eslint --config .eslintrc.js '{src,scripts}/**/*.js' --max-warnings 0
 
