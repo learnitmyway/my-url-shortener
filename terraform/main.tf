@@ -5,10 +5,10 @@ provider "aws" {
 resource "aws_dynamodb_table" "urls-table" {
   name         = "Urls"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "key"
+  hash_key     = "slug"
 
   attribute {
-    name = "key"
+    name = "slug"
     type = "S"
   }
 }

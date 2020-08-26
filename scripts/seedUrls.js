@@ -6,14 +6,14 @@ console.log('Importing urls into DynamoDB. Please wait.')
 
 var allURLs = [
   {
-    key: 'e',
+    slug: 'e',
     originalURL: 'https://example.com/',
     creationDate: '1594465878211',
     expirationDate: '1694465878211',
     userId: '1',
   },
   {
-    key: 'l',
+    slug: 'l',
     originalURL: 'https://learnitmyway.com/',
     creationDate: '1594465960809',
     expirationDate: '1694465960809',
