@@ -1,4 +1,5 @@
 const UrlAccess = require('./url.access')
+const SlugAccess = require('./slug.access')
 
 async function getURLs() {
   console.log('url.service getURLs')
@@ -8,7 +9,7 @@ async function getURLs() {
 async function createUrl(originalURL) {
   console.log('url.service createUrl originalUrl', originalURL)
 
-  const slug = originalURL.substring(0, 1)
+  const slug = await new SlugAccess().getNextSlug()
   const newUrl = {
     slug,
     originalURL,
