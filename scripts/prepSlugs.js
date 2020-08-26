@@ -10,7 +10,7 @@ for (let i = 0; i < chars.length; i++) {
     TableName: tableName,
     Item: {
       slug,
-      used: false,
+      used: 'false',
     },
   }
 
