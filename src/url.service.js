@@ -6,6 +6,12 @@ async function getURLs() {
   return new UrlAccess().getURLs()
 }
 
+async function getOriginalUrl(slug) {
+  console.log('url.service getOriginalUrl slug:', slug)
+  const url = await new UrlAccess().getUrl(slug)
+  return url.originalURL
+}
+
 async function createUrl(originalURL) {
   console.log('url.service createUrl originalUrl', originalURL)
 
@@ -24,4 +30,4 @@ async function createUrl(originalURL) {
   return 'www.my-url-shortener.com/' + slug
 }
 
-module.exports = { getURLs, createUrl }
+module.exports = { getURLs, getOriginalUrl, createUrl }

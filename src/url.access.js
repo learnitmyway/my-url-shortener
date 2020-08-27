@@ -29,6 +29,27 @@ class UrlAccess {
     }
   }
 
+  async getUrl(slug) {
+    console.log('url.access getUrl')
+    const params = {
+      TableName: this.tableName,
+      KeyConditionExpression: 'slug = :slug',
+      ExpressionAttributeValues: { ':slug': slug },
+    }
+
+    try {
+      const data = await this.docClient.query(params).promise()
+      console.log('Query succeeded.')
+      data.Items.forEach(({ slug, originalURL }) => {
+        console.log(' -', slug + ': ' + originalURL)
+      })
+      return data.Items[0]
+    } catch (err) {
+      console.log('Unable to query. Error:', JSON.stringify(err, null, 2))
+      throw err
+    }
+  }
+
   async createUrl(newUrl) {
     console.log('url.access createUrl newUrl', newUrl)
     const params = {
