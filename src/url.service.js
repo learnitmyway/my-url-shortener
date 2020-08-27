@@ -9,7 +9,9 @@ async function getURLs() {
 async function createUrl(originalURL) {
   console.log('url.service createUrl originalUrl', originalURL)
 
-  const slug = await new SlugAccess().getNextSlug()
+  const slugAccess = new SlugAccess()
+  const slug = await slugAccess.getNextSlug()
+  await slugAccess.markSlugAsUsed(slug)
   const newUrl = {
     slug,
     originalURL,

@@ -27,11 +27,29 @@ class SlugAccess {
       const data = await this.docClient.query(params).promise()
       console.log('Query succeeded.')
       data.Items.forEach(({ slug }) => {
-        console.log(' -', slug + ': ' + slug)
+        console.log(' -', slug)
       })
       return data.Items[0].slug
     } catch (err) {
       console.log('Unable to query. Error:', JSON.stringify(err, null, 2))
+      throw err
+    }
+  }
+
+  async markSlugAsUsed(slug) {
+    console.log('slug.access markSlugAsUsed')
+    const params = {
+      TableName: this.tableName,
+      Key: { slug },
+      UpdateExpression: 'set used = :used',
+      ExpressionAttributeValues: { ':used': 'true' },
+    }
+
+    try {
+      await this.docClient.update(params).promise()
+      console.log('Update succeeded.')
+    } catch (err) {
+      console.log('Unable to update item. Error:', JSON.stringify(err, null, 2))
       throw err
     }
   }
